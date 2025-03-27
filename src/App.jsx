@@ -4,7 +4,7 @@ import { auth } from './Config/firebaseConfig';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 
 export default function App() {
-  const [nome, setNome] = useState('');
+  
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
 
@@ -21,12 +21,6 @@ export default function App() {
   return (
     <main>
       <form onSubmit={autenticarComFirebase}>
-        <input
-          type="text"
-          value={nome}
-          placeholder="Nome"
-          onChange={(event) => setNome(event.target.value)}
-        />
         <input
           type="email"
           value={email}
