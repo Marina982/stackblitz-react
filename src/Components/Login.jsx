@@ -4,8 +4,6 @@ import './Login.css';
 export default function Login() {
   const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
-  const [idade, setIdade] = useState('');
-  const [cpf, setCPF] = useState('');
 
   const login = async (event) => {
     event.preventDefault();
@@ -13,7 +11,7 @@ export default function Login() {
       const resp = await fetch('http://localhost:5173/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ nome, email, idade, cpf }),
+        body: JSON.stringify({ nome, email}),
       });
 
       if (!resp.ok) {
