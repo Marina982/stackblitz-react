@@ -41,19 +41,7 @@ export default function Login() {
           placeholder="Email"
           onChange={(event) => setEmail(event.target.value)}
         />
-        <input
-          type="number"
-          value={idade}
-          placeholder="Idade"
-          onChange={(event) => setIdade(event.target.value)}
-        />
-        <input
-          type="text"
-          value={cpf}
-          placeholder="CPF"
-          onChange={(event) => setCPF(event.target.value)}
-        />
-        <button type="submit">Realizar Login</button>
+        <button type="submit">Login</button>
       </form>
     </main>
   );
