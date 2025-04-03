@@ -2,19 +2,40 @@ import { useState } from 'react';
 import './Components/Login.css';
 import { auth } from './Config/firebaseConfig';
 import { signInWithEmailAndPassword } from 'firebase/auth';
+import { useNavigate } from 'react-router-dom';
+import { jwtVerify } from 'jose';
 
 export default function App() {
-  
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
+
+  const navigate = useNavigate();
 
   const autenticarComFirebase = async (evento) => {
     evento.preventDefault();
     try {
-        await signInWithEmailAndPassword(auth, email, senha);
-        alert("Logado com sucesso");
+      
+      await signInWithEmailAndPassword(auth, email, senha);
+      alert("Logado com sucesso");
+
+      
+      const secretKey = new TextEncoder().encode('MinhaChaveSecreta');
+
+      const token = await new SignJWT({ user: 'admin' })
+        .setProtectedHeader({ alg: 'HS256' })
+        .setIssuedAt()
+        .setExpirationTime('1h')
+        .sign(secretKey)
+
+      
+      localStorage.setItem('token', token);
+
+      
+      navigate('/');
+      alert('Logado com sucesso');
     } catch (err) {
-        alert("Erro no processo", err);
+      
+      alert(`Erro no processo: ${err.message}`);
     }
   };
 
