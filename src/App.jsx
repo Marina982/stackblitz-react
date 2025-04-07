@@ -3,7 +3,7 @@ import './Components/Login.css';
 import { auth } from './Config/firebaseConfig';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
-import { jwtVerify } from 'jose';
+import { SignJWT } from 'jose';
 
 export default function App() {
   const [email, setEmail] = useState('');
@@ -14,27 +14,22 @@ export default function App() {
   const autenticarComFirebase = async (evento) => {
     evento.preventDefault();
     try {
-      
       await signInWithEmailAndPassword(auth, email, senha);
       alert("Logado com sucesso");
 
-      
       const secretKey = new TextEncoder().encode('MinhaChaveSecreta');
 
       const token = await new SignJWT({ user: 'admin' })
         .setProtectedHeader({ alg: 'HS256' })
         .setIssuedAt()
         .setExpirationTime('1h')
-        .sign(secretKey)
+        .sign(secretKey);
 
-      
       localStorage.setItem('token', token);
 
-      
       navigate('/');
       alert('Logado com sucesso');
     } catch (err) {
-      
       alert(`Erro no processo: ${err.message}`);
     }
   };

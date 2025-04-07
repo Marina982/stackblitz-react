@@ -4,21 +4,31 @@ import { useEffect, useState } from 'react';
 
 const AuthMiddleware = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(null);
+
   useEffect(() => {
     const verifyToken = async () => {
-      const token = localStorage.getItem('token');
-      const secretKey = new TextEncoder().encode('minhaChaveSecreta');
-      const isAuthenticated = await jwtVerify(token, secretKey);
-      if (isAuthenticated) {
+      try {
+        const token = localStorage.getItem('token');
+        const secretKey = new TextEncoder().encode('minhaChaveSecreta');
+        
+        if (!token) {
+          throw new Error("Token não encontrado!");
+        }
+
+        await jwtVerify(token, secretKey);
         setIsAuthenticated(true);
+      } catch (error) {
+        setIsAuthenticated(false);
       }
     };
     verifyToken();
   }, []);
 
   if (isAuthenticated === null) {
-    return <Link to="/login">Você está sem acesso!</Link>;
+    return <p>Carregando...</p>;
   }
-  return isAuthenticated == true ? <Outlet /> : <Navigate to="/login" />;
+
+  return isAuthenticated ? <Outlet /> : <Navigate to="/" />;
 };
+
 export default AuthMiddleware;
