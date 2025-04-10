@@ -6,29 +6,23 @@ const AuthMiddleware = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(null);
 
   useEffect(() => {
-    const verifyToken = async () => {
-      try {
-        const token = localStorage.getItem('token');
-        const secretKey = new TextEncoder().encode('minhaChaveSecreta');
-        
-        if (!token) {
-          throw new Error("Token não encontrado!");
-        }
-
-        await jwtVerify(token, secretKey);
-        setIsAuthenticated(true);
-      } catch (error) {
-        setIsAuthenticated(false);
-      }
-    };
-    verifyToken();
-  }, []);
+const verifyToken = async () => {
+  const token = localStorage.getItem('token');
+  const secretKey = new TextEncoder().encode('minhaChaveSecreta');
+  const isAuthenticated = await jwtVerify(token, secretKey);
+  if(isAuthenticated){
+setIsAuthenticated(true);
+  }
+}
+verifyToken();
+  },
+[]);
 
   if (isAuthenticated === null) {
-    return <p>Carregando...</p>;
+    return <Link to="/login"> Voce esta sem acesso</Link>
   }
 
-  return isAuthenticated ? <Outlet /> : <Navigate to="/" />;
+  return isAuthenticated === true ? <Outlet /> : <Navigate to="/login" />;
 };
 
 export default AuthMiddleware;

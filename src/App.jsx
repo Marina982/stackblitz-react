@@ -2,7 +2,7 @@ import { useState } from 'react';
 import './Components/Login.css';
 import { auth } from './Config/firebaseConfig';
 import { signInWithEmailAndPassword } from 'firebase/auth';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { SignJWT } from 'jose';
 
 export default function App() {
@@ -50,6 +50,10 @@ export default function App() {
           onChange={(event) => setSenha(event.target.value)}
         />
         <button type="submit">Login</button>
+
+        <Link to="/Registrar">
+      <p>Não tenho conta</p>
+      </Link>
       </form>
     </main>
   );
