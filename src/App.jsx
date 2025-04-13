@@ -4,7 +4,7 @@ import { auth } from './Config/firebaseConfig';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { Link, useNavigate } from 'react-router-dom';
 import { SignJWT } from 'jose';
-import Home from './Home';
+
 
 
 export default function App() {
