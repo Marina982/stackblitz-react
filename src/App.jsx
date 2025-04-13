@@ -6,7 +6,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import { SignJWT } from 'jose';
 
 
-
 export default function App() {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
