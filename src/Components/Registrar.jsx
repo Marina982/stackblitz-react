@@ -12,7 +12,7 @@ export default function Registra() {
     e.preventDefault();
     try {
       await createUserWithEmailAndPassword(auth, email, senha);
-      navigation('/login'); 
+      navigation('/'); 
     } catch (erro) {
       alert(`Erro ao cadastrar: ${erro.message}`); 
     }

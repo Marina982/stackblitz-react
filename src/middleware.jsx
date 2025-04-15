@@ -7,7 +7,7 @@ const AuthMiddleware = () => {
   useEffect(() => {
     const verifyToken = async () => {
       const token = localStorage.getItem('token');
-      const secretKey = new TextEncoder().encode('minhaChaveSecreta');
+      const secretKey = new TextEncoder().encode('minha chave secreta');
       const isAuthenticated = await jwtVerify(token, secretKey);
       if (isAuthenticated) {
         setIsAuthenticated(true);
@@ -17,9 +17,9 @@ const AuthMiddleware = () => {
   }, []);
 
   if (isAuthenticated === null) {
-    return <Link to="/login">Você está sem acesso!</Link>;
+    return <Link to="/">Você está sem acesso!</Link>;
   }
-  return isAuthenticated == true ? <Outlet /> : <Navigate to="/login" />;
+  return isAuthenticated == true ? <Outlet /> : <Navigate to="/" />;
 };
 
 export default AuthMiddleware;
