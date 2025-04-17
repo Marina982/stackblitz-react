@@ -12,7 +12,6 @@ createRoot(document.getElementById('root')).render(
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />} /> 
-        <Route path="/home" element={<Home />} />
         <Route path="/registrar" element={<Registrar />} />
         <Route element={<AuthMiddleware />}>
           <Route path="/dashboard" element={<Home />} />
