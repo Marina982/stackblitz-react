@@ -14,7 +14,7 @@ createRoot(document.getElementById('root')).render(
         <Route path="/" element={<App />} /> 
         <Route path="/registrar" element={<Registrar />} />
         <Route element={<AuthMiddleware />}>
-          <Route path="/dashboard" element={<Home />} />
+          <Route path="/home" element={<Home />} />
         </Route>
       </Routes>
     </BrowserRouter>
