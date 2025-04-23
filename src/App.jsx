@@ -25,7 +25,7 @@ export default function App (){
       .sign(secretKey)
 
       localStorage.setItem('token', token);
-      navigate('/home');
+      navigate('/');
 
     alert('logado com sucesso!')
 
