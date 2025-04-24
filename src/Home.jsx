@@ -1,7 +1,7 @@
 export default function Home(){
     return(
         <main>
-            <h1>Bem vindo a Home</h1>
+            <h1>Bem-Vindo</h1>
         </main>
     )
 }
